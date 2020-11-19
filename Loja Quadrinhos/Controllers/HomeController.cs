@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Loja_Quadrinhos.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Loja_Quadrinhos.Models;
+using System.Diagnostics;
 
 namespace Loja_Quadrinhos.Controllers
 {
@@ -22,8 +18,11 @@ namespace Loja_Quadrinhos.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        public IActionResult QuemSomos()
+        {
+            return View();
+        }
+        public IActionResult Contato()
         {
             return View();
         }

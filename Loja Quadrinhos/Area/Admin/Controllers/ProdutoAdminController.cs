@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Loja_Quadrinhos.Area.Admin.Controllers
 {
-    public class ProdutosAdminController : Controller
+    public class ProdutoAdminController : Controller
     {
         public IActionResult Index()
         {
