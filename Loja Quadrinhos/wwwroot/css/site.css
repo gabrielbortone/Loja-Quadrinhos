@@ -4,6 +4,9 @@
     font-weight: bold;
 }
 
+p {
+    font-family: 'Open Sans', sans-serif;
+}
 .barra {
     background-color: #D9AC9C;
 }
@@ -29,13 +32,15 @@
     margin-top: 40px;
 }
 
-    .titulo:before {
-        text-decoration: underline;
-        margin-top: 5px;
+
+.titulo:after {
+    content: "";
+    display: block;
+        margin: 8px auto;
         width: 120px;
         height: 3px;
         background: #86A694;
-    }
+}
 
 .conteudo {
     margin-top: 40px;

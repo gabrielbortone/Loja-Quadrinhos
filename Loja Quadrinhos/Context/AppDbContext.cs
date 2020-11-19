@@ -15,5 +15,9 @@ namespace Loja_Quadrinhos.Context
         { 
 
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            
+        }
     }
 }
