@@ -32,6 +32,11 @@ namespace Loja_Quadrinhos.Repositories
             return _context.PedidoItens.FirstOrDefault(pitem => pitem.PedidoItemId == id);
         }
 
+        public IQueryable<PedidoItem> GetPedidoItemByPedidoId(int pedidoId)
+        {
+            return _context.PedidoItens.Where(pitem => pitem.PedidoId == pedidoId);
+        }
+
         public void Update(PedidoItem entity)
         {
             _context.PedidoItens.Update(entity);

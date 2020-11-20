@@ -1,25 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Loja_Quadrinhos.Models.ValueObjects
 {
-    public struct Endereco
+    [Owned]
+    public class Endereco
     {
-        public string Logradouro { get; private set; }
-        public string Bairro { get; private set; }
-        public string Cidade { get; private set; }
-        public string Estado { get; private set; }
-        public string Pais { get; private set; }
+        [Required]
+        [Display(Name = "Informe o seu logradouro")]
+        [StringLength(30, MinimumLength = 3)]
+        public string Logradouro { get; set; }
 
-        public Endereco(string logradouro, string bairro, string cidade, string estado, string pais)
+        [Required]
+        public int Numero { get; set; }
+
+        [Required]
+        [Display(Name = "Informe o CEP:")]
+        [StringLength(8, MinimumLength = 8)]
+        public string CEP { get; set; }
+
+        [Required]
+        [Display(Name = "Informe o bairro:")]
+        [StringLength(30, MinimumLength = 4)]
+        public string Bairro { get; set; }
+
+        [Required]
+        [Display(Name = "Informe a cidade:")]
+        [StringLength(35, MinimumLength = 4)]
+        public string Cidade { get; set; }
+
+        [Required]
+        [Display(Name = "Informe o Estado:")]
+        [StringLength(35, MinimumLength = 4)]
+        public string Estado { get; set; }
+
+        public Endereco(string logradouro, int numero, string cEP, string bairro, string cidade, string estado)
         {
             Logradouro = logradouro;
+            Numero = numero;
+            CEP = cEP;
             Bairro = bairro;
             Cidade = cidade;
             Estado = estado;
-            Pais = pais;
         }
     }
 }

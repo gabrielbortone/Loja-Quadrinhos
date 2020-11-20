@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Loja_Quadrinhos.Context;
 using Loja_Quadrinhos.Models;
+using Loja_Quadrinhos.Repositories;
+using Loja_Quadrinhos.Repositories.Interfaces;
+using Loja_Quadrinhos.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,11 +39,14 @@ namespace Loja_Quadrinhos
                  .AddEntityFrameworkStores<AppDbContext>()
                  .AddDefaultTokenProviders();
 
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
             services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Home/AccessDenied");
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            //services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
+            services.AddScoped(sp => CarrinhoCompraService.GetCarrinho(sp));
+
             services.AddMemoryCache();
             services.AddSession();
         }

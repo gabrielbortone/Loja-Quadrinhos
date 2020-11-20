@@ -15,9 +15,16 @@ namespace Loja_Quadrinhos.Context
         { 
 
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Produto>()
+                .Property(p => p.Preco)
+                .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Pedido>()
+                .Property(pedido => pedido.PedidoTotal)
+                .HasColumnType("decimal(18,2)");
         }
     }
 }

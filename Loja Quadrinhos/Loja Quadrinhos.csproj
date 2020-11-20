@@ -6,7 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201120183547_Initial.cs" />
+    <Compile Remove="Migrations\20201120183547_Initial.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Area\Admin\Views\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\img\quadrinhos\" />
     <Folder Include="wwwroot\lib\" />
     <Folder Include="wwwroot\fonts\" />

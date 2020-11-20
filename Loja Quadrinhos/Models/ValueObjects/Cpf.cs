@@ -1,8 +1,11 @@
-﻿namespace Loja_Quadrinhos.Models.ValueObjects
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Loja_Quadrinhos.Models.ValueObjects
 {
     public static class CpfValidator
     {
-        public struct Cpf
+        [Owned]
+        public class Cpf
         {
             private readonly string _value;
 
