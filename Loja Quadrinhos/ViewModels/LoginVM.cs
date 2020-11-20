@@ -2,7 +2,7 @@
 
 namespace Loja_Quadrinhos.ViewModels
 {
-    public class LoginViewModel
+    public class LoginVM
     {
         [Required]
         [Display(Name = "Usuário")]

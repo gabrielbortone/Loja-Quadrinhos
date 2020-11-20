@@ -2,7 +2,7 @@
 
 namespace Loja_Quadrinhos.ViewModels
 {
-    public class RegisterViewModel
+    public class RegisterVM
     {
         [Required]
         [Display(Name = "Informe o seu nome")]

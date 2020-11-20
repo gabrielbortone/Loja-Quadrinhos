@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Loja_Quadrinhos.ViewModels
 {
-    public class ProdutoResumo
+    public class ProdutoResumoVM
     {
         public int ProdutoId { get; private set; }
         public string ImagemUrl { get; private set; }

@@ -23,14 +23,14 @@ namespace Loja_Quadrinhos.Controllers
         //implementar login, registro e logout
         public IActionResult Login(string returnUrl)
         {
-            return View(new LoginViewModel()
+            return View(new LoginVM()
             {
                 ReturnUrl = returnUrl
             });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel loginVM)
+        public async Task<IActionResult> Login(LoginVM loginVM)
         {
             if (!ModelState.IsValid)
                 return View(loginVM);
@@ -61,7 +61,7 @@ namespace Loja_Quadrinhos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(LoginViewModel registroVM)
+        public async Task<IActionResult> Register(LoginVM registroVM)
         {
             if (ModelState.IsValid)
             {
