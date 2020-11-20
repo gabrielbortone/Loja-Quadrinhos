@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Loja_Quadrinhos.Models
 {
@@ -31,6 +34,10 @@ namespace Loja_Quadrinhos.Models
         [Display(Name = "Caminho Imagem")]
         [StringLength(200)]
         public string ImagemUrl { get; set; }
+
+        [NotMapped]
+        [DisplayName("Upload file")]
+        public IFormFile ImageFile { get; set; }
 
         [Required]
         public decimal Preco { get; private set; }
