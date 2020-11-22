@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Loja_Quadrinhos.Area.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class ProdutoAdminController : Controller
     {
         private readonly AppDbContext _context;
@@ -79,7 +79,7 @@ namespace Loja_Quadrinhos.Area.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                ImagemService.AddImagens(produto);
                 UnitOfWork.ProdutoRepository.Add(produto);
                 UnitOfWork.Commit();
                 return RedirectToAction(nameof(Index));
@@ -117,6 +117,7 @@ namespace Loja_Quadrinhos.Area.Admin.Controllers
             {
                 try
                 {
+                    ImagemService.AddImagens(produto);
                     _context.Update(produto);
                     await _context.SaveChangesAsync();
                 }
@@ -153,11 +154,12 @@ namespace Loja_Quadrinhos.Area.Admin.Controllers
             return View(produto);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Deletar")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var produto = await _context.Produtos.FindAsync(id);
+            ImagemService.RemoveImagens(produto);
             _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

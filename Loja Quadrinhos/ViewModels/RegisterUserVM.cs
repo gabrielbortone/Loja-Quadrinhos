@@ -30,7 +30,7 @@ namespace Loja_Quadrinhos.ViewModels
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
+        public string PasswordMestra { get; set; }
 
         [Required]
         [Display(Name = "Informe o seu número:")]

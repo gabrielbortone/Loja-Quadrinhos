@@ -20,7 +20,7 @@
     <None Include="Views\Account\LoggedIn.cshtml" />
     <None Include="Views\Account\Login.cshtml" />
     <None Include="Views\Account\Logout.cshtml" />
-    <None Include="Views\Shared\Component\CarrinhoCompraResumo\Default.cshtml" />
+    <None Include="Views\Shared\Components\CarrinhoCompraResumo\Default.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

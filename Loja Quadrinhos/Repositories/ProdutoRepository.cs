@@ -2,10 +2,7 @@
 using Loja_Quadrinhos.Models;
 using Loja_Quadrinhos.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Loja_Quadrinhos.Repositories
 {

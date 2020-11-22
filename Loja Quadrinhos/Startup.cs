@@ -46,6 +46,7 @@ namespace Loja_Quadrinhos
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddScoped(sp => CarrinhoCompraService.GetCarrinho(sp));
+            services.AddScoped<ImagemService>();
 
             services.AddMemoryCache();
             services.AddSession();

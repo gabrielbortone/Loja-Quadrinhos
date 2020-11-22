@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Loja_Quadrinhos.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="titulo">Listando todos os pedidos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PedidoTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PedidoEntregueEm)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PedidoTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PedidoEntregueEm)
+            </td>
+            <td>
+                <a asp-action="Editar" asp-route-id="@item.PedidoId">Editar</a> |
+                <a asp-action="Detalhes" asp-route-id="@item.PedidoId">Detalhes</a> |
+                <a asp-action="Deletar" asp-route-id="@item.PedidoId">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

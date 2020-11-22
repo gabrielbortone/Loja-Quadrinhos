@@ -1,6 +1,7 @@
 ﻿using Loja_Quadrinhos.Context;
 using Loja_Quadrinhos.Models;
 using Loja_Quadrinhos.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace Loja_Quadrinhos.Repositories
@@ -24,12 +25,17 @@ namespace Loja_Quadrinhos.Repositories
 
         public IQueryable<Pedido> Get()
         {
-            return _context.Pedidos;
+            return _context.Pedidos.Include(pedido=> pedido.PedidoItens);
         }
 
         public Pedido GetById(int id)
         {
-            return _context.Pedidos.FirstOrDefault(pedido=> pedido.PedidoId == id);
+            return _context.Pedidos.Include(pedido => pedido.PedidoItens).FirstOrDefault(pedido=> pedido.PedidoId == id);
+        }
+
+        public IQueryable<Pedido> GetPedidosByUser(Usuario usuario)
+        {
+            return _context.Pedidos.Include(pedido => pedido.PedidoItens).Where(pedido=> pedido.Usuario == usuario);
         }
 
         public void Update(Pedido entity)

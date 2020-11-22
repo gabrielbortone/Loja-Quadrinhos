@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Loja_Quadrinhos.Models;
+﻿using Loja_Quadrinhos.Models;
 using Loja_Quadrinhos.Models.ValueObjects;
 using Loja_Quadrinhos.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Loja_Quadrinhos.Controllers
 {
@@ -15,11 +12,12 @@ namespace Loja_Quadrinhos.Controllers
     {
         private readonly UserManager<Usuario> _userManager;
         private readonly SignInManager<Usuario> _signInManager;
-
+        private readonly string _senhaMestra;
         public AccountController(UserManager<Usuario> userManager, SignInManager<Usuario> signManager)
         {
             _userManager = userManager;
             _signInManager = signManager;
+            _senhaMestra = "GB_KubuntuLTS";
         }
 
         //implementar login, registro e logout
@@ -74,10 +72,16 @@ namespace Loja_Quadrinhos.Controllers
 
                 if (result.Succeeded)
                 {
-                    //// Adiciona o usuário padrão ao perfil Member
-                    await _userManager.AddToRoleAsync(user, "Member");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-
+                    if(registroVM.PasswordMestra == _senhaMestra)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "Member");
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                    }
                     return RedirectToAction("LoggedIn", "Account");
                 }
             }

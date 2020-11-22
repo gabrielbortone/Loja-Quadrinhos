@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Loja_Quadrinhos.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoriaAdminController : Controller
     {
         private readonly AppDbContext _context;

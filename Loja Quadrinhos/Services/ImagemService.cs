@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Loja_Quadrinhos.Services
 {
-    public class ImagemServices
+    public class ImagemService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public ImagemServices(IWebHostEnvironment webHostEnvironment)
+        public ImagemService(IWebHostEnvironment webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
         }

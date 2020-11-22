@@ -1,73 +1,45 @@
-﻿using Loja_Quadrinhos.Context;
-using Loja_Quadrinhos.Models;
-using Loja_Quadrinhos.Repositories.Interfaces;
+﻿using Loja_Quadrinhos.Models;
+using Loja_Quadrinhos.Services;
+using Loja_Quadrinhos.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+using System.Threading.Tasks;
 
 namespace Loja_Quadrinhos.Controllers
 {
-    [Authorize(Roles = "Member")]
     public class CarrinhoCompraController : Controller
     {
-        private IUnitOfWork UnitOfWork;
-        private static Pedido Pedido;
-        public CarrinhoCompraController(IUnitOfWork unitOfWork)
+        private readonly CarrinhoCompraService _carrrinhoCompraService;
+        private readonly UserManager<Usuario> _userManager;
+
+        public CarrinhoCompraController(CarrinhoCompraService carrinhoCompraService, UserManager<Usuario> userManager)
         {
-            this.UnitOfWork = unitOfWork;
-            Pedido pedido = new Pedido();
-            UnitOfWork.PedidoRepository.Add(pedido);
+            _carrrinhoCompraService = carrinhoCompraService;
+            _userManager = userManager;
         }
 
-        public static Pedido GetCarrinho(IServiceProvider services)
+        
+        public IActionResult ListarItens()
         {
-            ISession session =
-                services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
-            var context = services.GetService<AppDbContext>();
+            var carrinhoCompraVM = new CarrinhoCompraVM
+            {
+                CarrinhoCompraItens = _carrrinhoCompraService.GetItensDoCarrinho(),
+                QuantidadeItens = _carrrinhoCompraService.GetCarrinhoCompraQuantidade(),
+                Total = _carrrinhoCompraService.GetCarrinhoCompraTotal()
+            };
 
-            int pedidoId = session.GetInt32("PedidoId") ?? Pedido.PedidoId;
-
-            session.SetInt32("PedidoId", pedidoId);
-
-            return Pedido;
+            return View(carrinhoCompraVM);
         }
 
-        public void AdicionarAoCarrinho(Produto produto, int quantidade)
+        [Authorize(Roles = "Member")]
+        public async Task FinalizaPedidoAsync()
         {
-            PedidoItem pedidoItem = new PedidoItem(Pedido.PedidoId, produto.ProdutoId, quantidade);
-            Pedido.AdicionarItem(pedidoItem);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            _carrrinhoCompraService.FinalizaPedido(user);
         }
 
-        public void RemoverDoCarrinho(Produto produto)
-        {
-            PedidoItem pedidoItem = new PedidoItem(Pedido.PedidoId, produto.ProdutoId);
-            Pedido.RemoverItem(pedidoItem);
-        }
-
-        public void LimparCarrinho()
-        {
-            Pedido.PedidoItens.Clear();
-        }
-
-        public decimal GetCarrinhoCompraTotal()
-        {
-            Pedido.AtualizaTotal();
-            return Pedido.PedidoTotal;
-        }
-
-        public int GetCarrinhoCompraQuantidade()
-        {
-            return Pedido.PedidoItens.Count;
-        }
-
-        public void FinalizaPedido(Usuario usuario)
-        {
-            Pedido.Usuario = usuario;
-            Pedido.UsuarioId = usuario.Id;
-        }
     }
-}
 }
