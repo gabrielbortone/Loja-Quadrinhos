@@ -1,6 +1,7 @@
 ﻿using Loja_Quadrinhos.Context;
 using Loja_Quadrinhos.Models;
 using Loja_Quadrinhos.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,17 +28,17 @@ namespace Loja_Quadrinhos.Repositories
 
         public IQueryable<Produto> Get()
         {
-            return _context.Produtos;
+            return _context.Produtos.Include(p=>p.Categoria).OrderBy(p=>p.QuantidadeVendidos);
         }
 
         public IQueryable<Produto> GetByCategoria(Categoria categoria)
         {
-            return _context.Produtos.Where(p => p.Categoria == categoria);
+            return _context.Produtos.Include(p => p.Categoria).Where(p => p.Categoria == categoria);
         }
 
         public Produto GetById(int id)
         {
-            return _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
+            return _context.Produtos.Include(p => p.Categoria).FirstOrDefault(p => p.ProdutoId == id);
         }
 
         public void Update(Produto entity)

@@ -1,4 +1,5 @@
 ﻿using Loja_Quadrinhos.Models;
+using Loja_Quadrinhos.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -7,11 +8,10 @@ namespace Loja_Quadrinhos.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private IUnitOfWork UnitOfWork;
+        public HomeController(IUnitOfWork unitOfWork)
         {
-            _logger = logger;
+            UnitOfWork = unitOfWork;
         }
 
         public IActionResult Index()

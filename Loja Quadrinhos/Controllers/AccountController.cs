@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Loja_Quadrinhos.Models;
+using Loja_Quadrinhos.Models.ValueObjects;
 using Loja_Quadrinhos.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,10 +13,10 @@ namespace Loja_Quadrinhos.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Usuario> _userManager;
+        private readonly SignInManager<Usuario> _signInManager;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signManager)
+        public AccountController(UserManager<Usuario> userManager, SignInManager<Usuario> signManager)
         {
             _userManager = userManager;
             _signInManager = signManager;
@@ -54,18 +56,20 @@ namespace Loja_Quadrinhos.Controllers
             return View(loginVM);
         }
 
-        public IActionResult Register()
+        public IActionResult Registrar()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(LoginVM registroVM)
+        public async Task<IActionResult> Registrar(RegisterUserVM registroVM)
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser() { UserName = registroVM.UserName };
+                var user = new Usuario(new Name(registroVM.Nome,registroVM.Sobrenome), registroVM.Username,
+                    registroVM.Email,registroVM.NumeroTelefone, registroVM.CPF,
+                    new Endereco(registroVM.Logradouro, registroVM.Numero,registroVM.CEP, registroVM.Bairro, registroVM.Cidade, registroVM.Estado));
                 var result = await _userManager.CreateAsync(user, registroVM.Password);
 
                 if (result.Succeeded)

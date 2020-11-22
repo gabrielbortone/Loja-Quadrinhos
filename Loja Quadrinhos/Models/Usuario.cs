@@ -13,5 +13,19 @@ namespace Loja_Quadrinhos.Models
         [Required]
         public Endereco Endereco { get; private set; }
 
+        public Usuario()
+        {
+
+        }
+        public Usuario(Name nome, string username,string email, string telefone, string cpf, Endereco endereco)
+        {
+            Nome = nome;
+            Cpf = cpf;
+            UserName = username;
+            Email = email;
+            PhoneNumber = telefone;
+            Endereco = endereco;
+        }
+
     }
 }

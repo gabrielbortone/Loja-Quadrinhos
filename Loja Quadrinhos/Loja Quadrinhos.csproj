@@ -11,10 +11,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Area\Admin\Views\" />
     <Folder Include="wwwroot\img\quadrinhos\" />
     <Folder Include="wwwroot\lib\" />
     <Folder Include="wwwroot\fonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Account\LoggedIn.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\Logout.cshtml" />
+    <None Include="Views\Shared\Component\CarrinhoCompraResumo\Default.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

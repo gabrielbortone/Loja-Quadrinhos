@@ -24,16 +24,33 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Início</a>
                         </li>
                         <li class="nav-item menu-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Produtos</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="Listar">Produtos</a>
+                        </li>
+                        @if (User.IsInRole("Member"))
+                        {
+                            <li class="nav-item menu-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Pedido" asp-action="Listar">Pedidos</a>
+                            </li>
+                        }
+                        
+                        <li class="nav-item menu-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="QuemSomos">Quem-Somos</a>
                         </li>
                         <li class="nav-item menu-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Quem-Somos</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contato">Contato</a>
                         </li>
-                        <li class="nav-item menu-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Contato</a>
-                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item menu-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ProdutoAdmin" asp-action="Listar">ProdutoAdmin</a>
+                            </li>
+                            <li class="nav-item menu-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="CategoriaAdmin" asp-action="Listar">CategoriaAdmin</a>
+                            </li>
+                        }
                     </ul>
                 </div>
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </nav>
     </header>

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Loja_Quadrinhos.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="titulo">Exibindo todas as categorias</h1>
+</div>
+
+<p>
+    <a asp-action="Cadastrar">Cadastrar</a>
+</p>
+<table class="texto table">
+    <thead>
+        <tr>
+            <th>
+                Nome da Categoria
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoriaNome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                <a asp-action="Editar" asp-route-id="@item.CategoriaId">Editar</a> |
+                <a asp-action="Detalhes" asp-route-id="@item.CategoriaId">Detalhes</a> |
+                <a asp-action="Deletar" asp-route-id="@item.CategoriaId">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

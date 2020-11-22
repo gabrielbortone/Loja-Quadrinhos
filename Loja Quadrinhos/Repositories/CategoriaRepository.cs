@@ -24,7 +24,7 @@ namespace Loja_Quadrinhos.Repositories
 
         public IQueryable<Categoria> Get()
         {
-            return _context.Categorias;
+            return _context?.Categorias;
         }
 
         public Categoria GetById(int id)

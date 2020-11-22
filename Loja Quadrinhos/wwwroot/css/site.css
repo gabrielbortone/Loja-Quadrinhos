@@ -4,8 +4,13 @@
     font-weight: bold;
 }
 
-p {
+.texto {
     font-family: 'Open Sans', sans-serif;
+    color: #40333B;
+}
+
+.texto-danger {
+    color: #BF343F;
 }
 .barra {
     background-color: #D9AC9C;
@@ -32,6 +37,12 @@ p {
     margin-top: 40px;
 }
 
+.btn-padrao {
+    color: #40333B;
+    background-color: #86A694;
+    border-color: #86A694;
+}
+
 
 .titulo:after {
     content: "";
@@ -53,19 +64,19 @@ a.navbar-brand {
 }
 
 a {
-  color: #0366d6;
+    color: #F2B47E;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #86A694;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #86A694;
 }
 
 html {
@@ -78,10 +89,10 @@ html {
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #86A694;
 }
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #86A694;
 }
 
 .box-shadow {

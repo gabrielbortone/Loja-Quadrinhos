@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Loja_Quadrinhos.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="titulo">Cadastrar novo produto</h1>
+</div>
+
+<p>
+    <a asp-action="Cadastrar">Cadastrar</a>
+</p>
+<table class="texto table">
+    <thead>
+        <tr class="texto">
+            <th>
+                Imagem
+            </th>
+            <th>
+                Título
+            </th>
+            <th>
+                Autor
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Preço
+            </th>
+            <th>
+                QuantVendidos
+            </th>
+            <th>
+                QuantEmEstoque
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="texto">
+            <td>
+                <img src=@Html.DisplayFor(modelItem => item.ImagemUrl)/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.CategoriaNome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantidadeVendidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantidadeEmEstoque)
+            </td>
+            <td>
+                <a asp-action="Editar" asp-route-id="@item.ProdutoId">Editar</a> |
+                <a asp-action="Detalhes" asp-route-id="@item.ProdutoId">Detalhes</a> |
+                <a asp-action="Deletar" asp-route-id="@item.ProdutoId">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
