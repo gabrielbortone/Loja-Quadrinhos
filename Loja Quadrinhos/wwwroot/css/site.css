@@ -4,6 +4,50 @@
     font-weight: bold;
 }
 
+.imagem-miniatura{
+    width: 220px;
+    height: 350px;
+}
+
+.subtitulo {
+    font-family: XPLOR;
+    font-size: 1rem;
+    line-height: 1rem;
+    color: #40333B;
+}
+
+.preco {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    color: #BF343F;
+}
+
+.preco-detalhe {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 36px;
+    color: #BF343F;
+}
+
+.btn-comprar {
+    width: 423px;
+    height: 56px;
+    background: #86A694;
+}
+
+.descricao-detalhe {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #40333B;
+}
+
 .texto {
     font-family: 'Open Sans', sans-serif;
     color: #40333B;

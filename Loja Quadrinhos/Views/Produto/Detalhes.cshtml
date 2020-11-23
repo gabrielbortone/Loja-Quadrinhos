@@ -1,0 +1,18 @@
+﻿@model Loja_Quadrinhos.Models.Produto
+
+<div class="text-center">
+    <h1 class="titulo">@Model.Categoria.CategoriaNome</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <img src=@Model.ImagemUrl/>
+        </div>
+        <div class="col-6">
+            <h1 class="titulo">@Model.Titulo</h1>
+            <p class="preco-detalhe">R$ @Model.Preco</p>
+            <p class="descricao-detalhe">@Model.Descricao</p>
+        </div>
+    </div>
+</div>
