@@ -6,39 +6,18 @@ namespace Loja_Quadrinhos.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private AppDbContext _context;
-        private ProdutoRepository _produtoRepo;
-        private CategoriaRepository _categoriaRepo;
-        private PedidoRepository _pedidoRepo;
-        private PedidoItemRepository _pedidoItemRepo;
-        public IProdutoRepository ProdutoRepository
-        {
-            get
-            {
-                return _produtoRepo = _produtoRepo ?? new ProdutoRepository(_context);
-            }
-        }
+        public IProdutoRepository ProdutoRepository { get; }
+        public ICategoriaRepository CategoriaRepository { get; }
+        public IPedidoRepository PedidoRepository { get; }
+        public IPedidoItemRepository PedidoItemRepository { get; }
 
-        public ICategoriaRepository CategoriaRepository 
+        public UnitOfWork(AppDbContext context)
         {
-            get
-            {
-                return _categoriaRepo ?? new CategoriaRepository(_context);
-            }
-        }
-        public IPedidoRepository PedidoRepository
-        {
-            get
-            {
-                return _pedidoRepo ?? new PedidoRepository(_context);
-            }
-        }
-
-        public IPedidoItemRepository PedidoItemRepository
-        {
-            get
-            {
-                return _pedidoItemRepo ?? new PedidoItemRepository(_context);
-            }
+            _context = context;
+            ProdutoRepository = new ProdutoRepository(_context);
+            CategoriaRepository = new CategoriaRepository(_context);
+            PedidoRepository = new PedidoRepository(_context);
+            PedidoItemRepository = new PedidoItemRepository(_context);
         }
 
         public void Commit()

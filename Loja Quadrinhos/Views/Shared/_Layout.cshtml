@@ -33,12 +33,6 @@
                             </li>
                         }
 
-                        <li class="nav-item menu-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="QuemSomos">Quem-Somos</a>
-                        </li>
-                        <li class="nav-item menu-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contato">Contato</a>
-                        </li>
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item menu-item">
@@ -48,6 +42,14 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="CategoriaAdmin" asp-action="Listar">CategoriaAdmin</a>
                             </li>
                         }
+
+                        <li class="nav-item menu-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="QuemSomos">Quem-Somos</a>
+                        </li>
+                        <li class="nav-item menu-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contato">Contato</a>
+                        </li>
+
 
                         @await Component.InvokeAsync("CarrinhoCompraResumo");
                     </ul>

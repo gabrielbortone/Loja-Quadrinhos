@@ -39,7 +39,7 @@ namespace Loja_Quadrinhos
                  .AddEntityFrameworkStores<AppDbContext>()
                  .AddDefaultTokenProviders();
 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Home/AccessDenied");
 

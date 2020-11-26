@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 
 namespace Loja_Quadrinhos.Repositories.Interfaces
 {
     public interface IRepository<T>
     {
-        IQueryable<T> Get();
+        IEnumerable<T> Get();
         T GetById(int id);
         void Add(T entity);
         void Update(T entity);

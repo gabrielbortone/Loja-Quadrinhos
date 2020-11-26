@@ -1,5 +1,7 @@
-﻿using Loja_Quadrinhos.Repositories.Interfaces;
+﻿using Loja_Quadrinhos.Models;
+using Loja_Quadrinhos.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Loja_Quadrinhos.Components
 {
@@ -13,7 +15,7 @@ namespace Loja_Quadrinhos.Components
 
         public IViewComponentResult Invoke()
         {
-            var categorias = _unitOfWork.CategoriaRepository.Get();
+            IEnumerable<Categoria> categorias = _unitOfWork.CategoriaRepository.Get();
             return View(categorias);
         }
     }

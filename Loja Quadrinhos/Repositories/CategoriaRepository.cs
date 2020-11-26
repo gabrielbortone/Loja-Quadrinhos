@@ -1,6 +1,7 @@
 ﻿using Loja_Quadrinhos.Context;
 using Loja_Quadrinhos.Models;
 using Loja_Quadrinhos.Repositories.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Loja_Quadrinhos.Repositories
@@ -22,9 +23,9 @@ namespace Loja_Quadrinhos.Repositories
             _context.Categorias.Remove(entity);
         }
 
-        public IQueryable<Categoria> Get()
+        public IEnumerable<Categoria> Get()
         {
-            return _context?.Categorias;
+            return _context.Categorias.ToList();
         }
 
         public Categoria GetById(int id)

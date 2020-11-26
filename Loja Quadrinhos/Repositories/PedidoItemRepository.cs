@@ -1,6 +1,7 @@
 ﻿using Loja_Quadrinhos.Context;
 using Loja_Quadrinhos.Models;
 using Loja_Quadrinhos.Repositories.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Loja_Quadrinhos.Repositories
@@ -22,9 +23,9 @@ namespace Loja_Quadrinhos.Repositories
             _context.PedidoItens.Remove(entity);
         }
 
-        public IQueryable<PedidoItem> Get()
+        public IEnumerable<PedidoItem> Get()
         {
-            return _context.PedidoItens;
+            return _context.PedidoItens.ToList();
         }
 
         public PedidoItem GetById(int id)

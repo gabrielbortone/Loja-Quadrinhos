@@ -1,11 +1,13 @@
-﻿<li class="dropdown">
+﻿@model IEnumerable<Categoria>
+
+<li class="dropdown">
     <a asp-controller="Produto" asp-action="Listar" class="nav-link text-dark">Produtos   </a>
     <ul class="dropdown-menu">
-        @foreach (var categoria in Model)
+        @foreach (Categoria categoria in Model)
         {
             <li>
-                <a asp-controller="Produto" asp-action="ListarPorCategoria" 
-                   asp-route-categoria="@categoria.CategoriaNome">@categoria.CategoriaNome</a>
+                <a asp-controller="Produto" asp-action="ListarPorCategoria"
+                   asp-route-categoria="@categoria">@categoria.CategoriaNome</a>
             </li>
         }
         <li class="dropdown-divider"></li>
