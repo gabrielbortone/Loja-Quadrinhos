@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Loja_Quadrinhos.Components;
 using Loja_Quadrinhos.Context;
 using Loja_Quadrinhos.Models;
 using Loja_Quadrinhos.Repositories;
@@ -39,20 +40,21 @@ namespace Loja_Quadrinhos
                  .AddEntityFrameworkStores<AppDbContext>()
                  .AddDefaultTokenProviders();
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Home/AccessDenied");
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddScoped(sp => CarrinhoCompraService.GetCarrinho(sp));
-            services.AddScoped<ImagemService>();
-
             services.AddMemoryCache();
             services.AddSession();
+
+            services.AddScoped<CarrinhoCompraService>();
+            services.AddScoped<ImagemService>();
+            
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -68,9 +70,12 @@ namespace Loja_Quadrinhos
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            Util.CreateRoles(serviceProvider).Wait();
 
             app.UseEndpoints(endpoints =>
             {

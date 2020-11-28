@@ -11,28 +11,24 @@ namespace Loja_Quadrinhos.Services
     public class CarrinhoCompraService
     {
         private IUnitOfWork UnitOfWork;
-        private static Pedido Pedido;
-        public CarrinhoCompraService(IUnitOfWork unitOfWork)
+        private Pedido Pedido;
+        public CarrinhoCompraService(IUnitOfWork unitOfWork, IServiceProvider services)
         {
             this.UnitOfWork = unitOfWork;
-            Pedido pedido = new Pedido();
-            UnitOfWork.PedidoRepository.Add(pedido);
-        }
-        public static Pedido GetCarrinho(IServiceProvider services)
-        {
+            Pedido = new Pedido();
+            UnitOfWork.PedidoRepository.Add(Pedido);
+
             ISession session =
                 services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
             var context = services.GetService<AppDbContext>();
-
             int pedidoId = session.GetInt32("PedidoId") ?? Pedido.PedidoId;
 
             session.SetInt32("PedidoId", pedidoId);
-
-            return Pedido;
         }
 
-        public IEnumerable<PedidoItem> GetItensDoCarrinho()
+
+        public List<PedidoItem> GetItensDoCarrinho()
         {
             return Pedido.PedidoItens;
         }

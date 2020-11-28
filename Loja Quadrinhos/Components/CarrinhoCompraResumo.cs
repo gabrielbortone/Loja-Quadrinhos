@@ -23,6 +23,8 @@ namespace Loja_Quadrinhos.Components
                 Total = _carrinhoCompraService.GetCarrinhoCompraTotal()
             };
 
+
+
             return View(carrinhoCompraVM);
         }
     }

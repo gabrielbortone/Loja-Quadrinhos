@@ -1,9 +1,12 @@
-﻿using Loja_Quadrinhos.Models;
+﻿using Loja_Quadrinhos.Components;
+using Loja_Quadrinhos.Models;
 using Loja_Quadrinhos.Models.ValueObjects;
 using Loja_Quadrinhos.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Threading.Tasks;
 
 namespace Loja_Quadrinhos.Controllers
@@ -65,6 +68,7 @@ namespace Loja_Quadrinhos.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 var user = new Usuario(new Name(registroVM.Nome,registroVM.Sobrenome), registroVM.Username,
                     registroVM.Email,registroVM.NumeroTelefone, registroVM.CPF,
                     new Endereco(registroVM.Logradouro, registroVM.Numero,registroVM.CEP, registroVM.Bairro, registroVM.Cidade, registroVM.Estado));

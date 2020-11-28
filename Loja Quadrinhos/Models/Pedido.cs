@@ -44,12 +44,15 @@ namespace Loja_Quadrinhos.Models
 
         public Pedido()
         {
-            
+            this.PedidoItens = new List<PedidoItem>();
+            this.PedidoTotal = 0;
+            this.DataPedido = DateTime.Now;
         }
         public Pedido(int pedidoId)
         {
             this.PedidoId = pedidoId;
             this.PedidoTotal = 0;
+            this.PedidoItens = new List<PedidoItem>();
             this.DataPedido = DateTime.Now;
         }
 
