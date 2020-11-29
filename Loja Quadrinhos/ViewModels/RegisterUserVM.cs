@@ -33,7 +33,7 @@ namespace Loja_Quadrinhos.ViewModels
         public string PasswordMestra { get; set; }
 
         [Required]
-        [Display(Name = "Informe o seu número:")]
+        [Display(Name = "Informe o seu número de telefone:")]
         [StringLength(12, MinimumLength = 8)]
         public string NumeroTelefone { get; set; }
 

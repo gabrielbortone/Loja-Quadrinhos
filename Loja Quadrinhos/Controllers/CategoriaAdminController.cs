@@ -58,7 +58,7 @@ namespace Loja_Quadrinhos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Cadastrar([Bind("CategoriaId,CategoriaNome,Descricao")] Categoria categoria)
+        public IActionResult Cadastrar([Bind("CategoriaId, CategoriaNome,Descricao")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {

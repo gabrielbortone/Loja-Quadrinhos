@@ -5,15 +5,15 @@ namespace Loja_Quadrinhos.Models
 {
     public class PedidoItem
     {
-        public int PedidoItemId { get; private set; }
+        public int PedidoItemId { get; set; }
 
         [Required]
-        public int PedidoId { get; private set; }
-        public virtual Pedido Pedido { get; private set; }
+        public int PedidoId { get; set; }
+        public virtual Pedido Pedido { get;  set; }
 
         [Required]
-        public int ProdutoId { get; private set; }
-        public virtual Produto Produto { get; private set; }
+        public int ProdutoId { get; set; }
+        public virtual Produto Produto { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = "Informe uma quantidade válida!")]
         public int Quantidade { get; private set; }

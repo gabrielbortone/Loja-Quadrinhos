@@ -5,21 +5,25 @@ namespace Loja_Quadrinhos.Models
 {
     public class Categoria
     {
-        public int CategoriaId { get; private set; }
+        public int CategoriaId { get; set; }
 
         [Required]
         [Display(Name = "Nome da Categoria")]
         [MinLength(4)]
         [MaxLength(30)]
-        public string CategoriaNome { get; private set; }
+        public string CategoriaNome { get; set; }
 
         [Required]
-        [Display(Name = "Descrição detalhada do Quadrinho")]
-        [MinLength(20)]
+        [Display(Name = "Descrição detalhada da Descrição")]
+        [MinLength(10)]
         [MaxLength(200)]
-        public string Descricao { get; private set; }
-        public virtual List<Produto> Produtos { get; set; }
+        public string Descricao { get; set; }
 
+        public virtual List<Produto> Produtos { get; set; }
+        public Categoria()
+        {
+
+        }
         public Categoria(string categoriaNome, string descricao)
         {
             CategoriaNome = categoriaNome;
@@ -31,6 +35,13 @@ namespace Loja_Quadrinhos.Models
             CategoriaNome = categoriaNome;
             Descricao = descricao;
             Produtos = produtos;
+        }
+
+        public Categoria(int categoriaId, string categoriaNome, string descricao)
+        {
+            CategoriaId = categoriaId;
+            CategoriaNome = categoriaNome;
+            Descricao = descricao;
         }
     }
 }

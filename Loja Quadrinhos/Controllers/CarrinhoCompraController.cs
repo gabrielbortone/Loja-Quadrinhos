@@ -35,7 +35,7 @@ namespace Loja_Quadrinhos.Controllers
         }
 
         [Authorize(Roles = "Member")]
-        public async Task FinalizaPedidoAsync()
+        public async Task FinalizaPedido()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             _carrrinhoCompraService.FinalizaPedido(user);

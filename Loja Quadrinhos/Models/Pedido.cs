@@ -5,17 +5,17 @@ namespace Loja_Quadrinhos.Models
 {
     public class Pedido
     {
-        public int PedidoId { get; private set; }
+        public int PedidoId { get; set; }
 
         public string UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
 
-        public virtual List<PedidoItem> PedidoItens { get; private set; }
+        public virtual List<PedidoItem> PedidoItens { get; set; }
 
         public decimal PedidoTotal { get; private set; }
 
         public DateTime DataPedido { get; private set; }
-        public DateTime? PedidoEntregueEm { get; private set; }
+        public DateTime? PedidoEntregueEm { get; set; }
 
         public void AdicionarItem(PedidoItem pedidoItem)
         {

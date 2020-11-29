@@ -30,7 +30,6 @@ namespace Loja_Quadrinhos.Models
         [MaxLength(200)]
         public string Descricao { get; set; }
 
-        [Required]
         [Display(Name = "Caminho Imagem")]
         [StringLength(200)]
         public string ImagemUrl { get; set; }
@@ -40,13 +39,15 @@ namespace Loja_Quadrinhos.Models
         public IFormFile ImageFile { get; set; }
 
         [Required]
-        public decimal Preco { get; private set; }
+        public decimal Preco { get; set; }
+
 
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
-        public int QuantidadeVendidos { get; private set; }
+        public int QuantidadeVendidos { get; set; }
+
 
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
-        public int QuantidadeEmEstoque { get; private set; }
+        public int QuantidadeEmEstoque { get; set; }
 
         public Produto()
         {
