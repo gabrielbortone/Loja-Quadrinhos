@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Loja_Quadrinhos.Models;
 using Loja_Quadrinhos.Repositories;
 using Loja_Quadrinhos.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +35,12 @@ namespace Loja_Quadrinhos.Controllers
                 return View(produtos);
             }
             return View("Error");
+        }
+
+        public IActionResult Detalhes(int produtoId)
+        {
+            Produto produto = _unitOfWork.ProdutoRepository.GetById(produtoId);
+            return View(produto);
         }
     }
 }

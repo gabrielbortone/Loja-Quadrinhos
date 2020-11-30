@@ -33,6 +33,14 @@
     color: #BF343F;
 }
 
+
+.titulo-quadrinho {
+    color: #BF343F;
+    font-size: 3rem;
+    font-family: XPLOR;
+}
+
+
 .btn-comprar {
     width: 423px;
     height: 56px;
@@ -95,6 +103,7 @@
         width: 120px;
         height: 3px;
         background: #86A694;
+        margin-bottom: 50px;
 }
 
 .conteudo {

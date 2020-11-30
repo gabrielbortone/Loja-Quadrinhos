@@ -1,4 +1,5 @@
 ﻿using Loja_Quadrinhos.Models;
+using Loja_Quadrinhos.Repositories.Interfaces;
 using Loja_Quadrinhos.Services;
 using Loja_Quadrinhos.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -13,13 +14,20 @@ namespace Loja_Quadrinhos.Controllers
     {
         private readonly CarrinhoCompraService _carrrinhoCompraService;
         private readonly UserManager<Usuario> _userManager;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CarrinhoCompraController(CarrinhoCompraService carrinhoCompraService, UserManager<Usuario> userManager)
+        public CarrinhoCompraController(CarrinhoCompraService carrinhoCompraService, UserManager<Usuario> userManager, IUnitOfWork unitOfWork)
         {
             _carrrinhoCompraService = carrinhoCompraService;
             _userManager = userManager;
+            _unitOfWork = unitOfWork;
         }
 
+        public IActionResult AdicionarAoCarrinho(int produtoId)
+        {
+            _carrrinhoCompraService.AdicionarItemNoCarrinhoCompra(produtoId, 1);
+            return RedirectToAction("ListarItens");
+        }
         
         public IActionResult ListarItens()
         {

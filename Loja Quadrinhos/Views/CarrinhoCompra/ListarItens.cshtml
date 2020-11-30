@@ -5,52 +5,58 @@
 }
 
 <div class="text-center">
-    <h1 class="titulo">Listando todos os produtos da sua lista de compras</h1>
+    <h1 class="titulo">Sua lista de compras</h1>
 </div>
 
-<table class="texto table">
-    <thead>
-        <tr class="texto">
-            <th>
-                Imagem
-            </th>
-            <th>
-                Título
-            </th>
-            <th>
-                Autor
-            </th>
-            <th>
-                Categoria
-            </th>
-            <th>
-                Preço
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in CarrinhoCompraItens)
-        {
-            <tr class="texto">
-                <td>
-                    <img src=@Html.DisplayFor(modelItem => item.Produto.ImagemUrl) />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Produto.Titulo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Produto.Autor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Produto.Categoria.CategoriaNome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Produto.Preco)
-                </td>
-                <td>
-                    <a asp-action="RemoverDoCarrinho" asp-route-id="@item">Remover Do Carrinho</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        <table class="texto table">
+            <thead>
+                <tr class="texto">
+                    <th>
+                        Imagem
+                    </th>
+                    <th>
+                        Título
+                    </th>
+                    <th>
+                        Autor
+                    </th>
+                    <th>
+                        Categoria
+                    </th>
+                    <th>
+                        Preço
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in CarrinhoCompraItens)
+                {
+                    <tr class="texto">
+                        <td>
+                            <img src=@Html.DisplayFor(modelItem => item.Produto.ImagemUrl) />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Produto.Titulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Produto.Autor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Produto.Categoria.CategoriaNome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Produto.Preco)
+                        </td>
+                        <td>
+                            <a asp-action="RemoverDoCarrinho" asp-route-id="@item">Remover Do Carrinho</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+            <a class="btn btn-padrao">Finalizar pedido</a>
+</div>
+</div>
+

@@ -4,15 +4,16 @@
     <h1 class="titulo">@Model.Categoria.CategoriaNome</h1>
 </div>
 
-<div class="container">
+<div class="container" style="margin-top:80px;">
     <div class="row">
         <div class="col-6">
             <img src=@Model.ImagemUrl/>
         </div>
         <div class="col-6">
-            <h1 class="titulo">@Model.Titulo</h1>
+            <h1 class="titulo-quadrinho">@Model.Titulo</h1>
             <p class="preco-detalhe">R$ @Model.Preco</p>
             <p class="descricao-detalhe">@Model.Descricao</p>
+            <a asp-controller="CarrinhoCompra" asp-action="AdicionarAoCarrinho" asp-route-produtoId="@Model.ProdutoId" class="btn btn-comprar">Adicionar ao Carrinho</a>
         </div>
     </div>
 </div>
