@@ -86,14 +86,5 @@ namespace Loja_Quadrinhos.Models
         {
             this.Preco = novoPreco;
         }
-        public void Comprar(int quantidade)
-        {
-            if (quantidade > QuantidadeEmEstoque)
-            {
-                throw new Exception("Quantidade maior que o estoque!");
-            }
-            this.QuantidadeEmEstoque -= quantidade;
-            this.QuantidadeVendidos += quantidade;
-        }
     }
 }

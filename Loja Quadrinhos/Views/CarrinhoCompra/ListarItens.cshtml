@@ -31,32 +31,44 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in CarrinhoCompraItens)
+                @foreach (var pedidoItem in CarrinhoCompraItens)
                 {
                     <tr class="texto">
                         <td>
-                            <img src=@Html.DisplayFor(modelItem => item.Produto.ImagemUrl) />
+                            <img src="@pedidoItem.Produto.ImagemUrl" />
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Produto.Titulo)
+                            @pedidoItem.Produto.Titulo
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Produto.Autor)
+                            @pedidoItem.Produto.Autor
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Produto.Categoria.CategoriaNome)
+                            @pedidoItem.Produto.Categoria.CategoriaNome
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Produto.Preco)
+                            @pedidoItem.Produto.Preco)
                         </td>
                         <td>
-                            <a asp-action="RemoverDoCarrinho" asp-route-id="@item">Remover Do Carrinho</a>
+                            <a asp-action="RemoverDoCarrinho" asp-route-id="@pedidoItem.ProdutoId">Remover Do Carrinho</a>
                         </td>
                     </tr>
                 }
+
+            <tr>
+                <td class="texto"><b>Total:</b></td>
+                <td class="texto">@Model.Total</td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a asp-action="FinalizaPedido" class="btn btn-padrao">Finalizar pedido</a>
+                </td>
+            </tr>
+
             </tbody>
+
         </table>
-            <a class="btn btn-padrao">Finalizar pedido</a>
+           
 </div>
 </div>
 

@@ -36,9 +36,20 @@ namespace Loja_Quadrinhos.Services
         public void AdicionarItemNoCarrinhoCompra(int produtoId, int quantidade)
         {
             PedidoItem pedidoItem = new PedidoItem(Pedido.PedidoId, produtoId, quantidade);
+            Produto produto = UnitOfWork.ProdutoRepository.GetById(produtoId);
+
             if (pedidoItem != null)
             {
-                Pedido.AdicionarItem(pedidoItem);
+                if(produto.QuantidadeEmEstoque > quantidade)
+                {
+                    UnitOfWork.PedidoItemRepository.Add(pedidoItem);
+                    Pedido.AdicionarItem(pedidoItem);
+                }
+                else
+                {
+                    throw new Exception("O número de produto é menor que o estoque");
+                }
+                
             }
             else
             {
@@ -52,6 +63,7 @@ namespace Loja_Quadrinhos.Services
             if (pedidoItem != null)
             {
                 Pedido.RemoverItem(pedidoItem);
+                UnitOfWork.PedidoItemRepository.Delete(pedidoItem);
             }
             else
             {

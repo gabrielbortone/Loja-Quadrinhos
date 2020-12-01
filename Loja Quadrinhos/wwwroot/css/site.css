@@ -43,8 +43,9 @@
 
 .btn-comprar {
     width: 423px;
-    height: 56px;
+    height: 28px;
     background: #86A694;
+    line-height: 28px;
 }
 
 .descricao-detalhe {

@@ -12,9 +12,9 @@ namespace Loja_Quadrinhos.Controllers
 {
     public class CarrinhoCompraController : Controller
     {
-        private readonly CarrinhoCompraService _carrrinhoCompraService;
-        private readonly UserManager<Usuario> _userManager;
-        private readonly IUnitOfWork _unitOfWork;
+        private CarrinhoCompraService _carrrinhoCompraService;
+        private UserManager<Usuario> _userManager;
+        private IUnitOfWork _unitOfWork;
 
         public CarrinhoCompraController(CarrinhoCompraService carrinhoCompraService, UserManager<Usuario> userManager, IUnitOfWork unitOfWork)
         {
@@ -26,6 +26,16 @@ namespace Loja_Quadrinhos.Controllers
         public IActionResult AdicionarAoCarrinho(int produtoId)
         {
             _carrrinhoCompraService.AdicionarItemNoCarrinhoCompra(produtoId, 1);
+            return RedirectToAction("ListarItens");
+        }
+
+        public IActionResult RemoverDoCarrinho(int produtoId)
+        {
+            _carrrinhoCompraService.RemoverItemDoCarrinhoCompra(produtoId);
+            if (_carrrinhoCompraService.GetCarrinhoCompraQuantidade() == 0)
+            {
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("ListarItens");
         }
         
