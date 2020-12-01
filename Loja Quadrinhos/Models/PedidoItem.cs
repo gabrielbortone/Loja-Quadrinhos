@@ -55,6 +55,14 @@ namespace Loja_Quadrinhos.Models
             ProdutoId = produtoId;
         }
 
+        public PedidoItem(int pedidoId, Pedido pedido, int produtoId, Produto produto)
+        {
+            PedidoId = pedidoId;
+            Pedido = pedido;
+            ProdutoId = produtoId;
+            Produto = produto;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is PedidoItem item &&

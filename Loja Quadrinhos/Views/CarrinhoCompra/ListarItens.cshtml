@@ -28,36 +28,47 @@
                     <th>
                         Preço
                     </th>
+                    <th>
+                        Quantidade
+                    </th>
+                    <th>
+
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var pedidoItem in CarrinhoCompraItens)
                 {
-                    <tr class="texto">
-                        <td>
+                <tr class="texto">
+                    <td>
+                        <div class="img-miniatura">
                             <img src="@pedidoItem.Produto.ImagemUrl" />
-                        </td>
-                        <td>
-                            @pedidoItem.Produto.Titulo
-                        </td>
-                        <td>
-                            @pedidoItem.Produto.Autor
-                        </td>
-                        <td>
-                            @pedidoItem.Produto.Categoria.CategoriaNome
-                        </td>
-                        <td>
-                            @pedidoItem.Produto.Preco)
-                        </td>
-                        <td>
-                            <a asp-action="RemoverDoCarrinho" asp-route-id="@pedidoItem.ProdutoId">Remover Do Carrinho</a>
-                        </td>
-                    </tr>
+                        </div>
+                    </td>
+                    <td>
+                        @pedidoItem.Produto.Titulo
+                    </td>
+                    <td>
+                        @pedidoItem.Produto.Autor
+                    </td>
+                    <td>
+                        @pedidoItem.Produto.Categoria.CategoriaNome
+                    </td>
+                    <td>
+                        R$ @pedidoItem.Produto.Preco
+                    </td>
+                    <td>
+                        @pedidoItem.Quantidade
+                    </td>
+                    <td>
+                        <a asp-action="RemoverDoCarrinho" asp-route-produtoId="@pedidoItem.ProdutoId">Remover</a>
+                    </td>
+                </tr>
                 }
 
             <tr>
                 <td class="texto"><b>Total:</b></td>
-                <td class="texto">@Model.Total</td>
+                <td class="texto">R$ @Model.Total</td>
                 <td></td>
                 <td></td>
                 <td>

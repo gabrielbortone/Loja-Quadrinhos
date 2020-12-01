@@ -34,7 +34,7 @@ namespace Loja_Quadrinhos.Controllers
             _carrrinhoCompraService.RemoverItemDoCarrinhoCompra(produtoId);
             if (_carrrinhoCompraService.GetCarrinhoCompraQuantidade() == 0)
             {
-                return RedirectToAction("Index");
+                return View("ListaItensVazia");
             }
             return RedirectToAction("ListarItens");
         }

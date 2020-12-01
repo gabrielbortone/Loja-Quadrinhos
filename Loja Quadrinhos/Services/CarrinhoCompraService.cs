@@ -11,22 +11,29 @@ namespace Loja_Quadrinhos.Services
     public class CarrinhoCompraService
     {
         private IUnitOfWork UnitOfWork;
-        private Pedido Pedido;
+        private static Pedido Pedido;
         public CarrinhoCompraService(IUnitOfWork unitOfWork, IServiceProvider services)
         {
             this.UnitOfWork = unitOfWork;
-            Pedido = new Pedido();
-            UnitOfWork.PedidoRepository.Add(Pedido);
-
-            ISession session =
-                services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-
-            var context = services.GetService<AppDbContext>();
-            int pedidoId = session.GetInt32("PedidoId") ?? Pedido.PedidoId;
-
-            session.SetInt32("PedidoId", pedidoId);
+            CriarPedido(services);
         }
 
+        public void CriarPedido(IServiceProvider services)
+        {
+            if(Pedido == null)
+            {
+                Pedido = new Pedido();
+                UnitOfWork.PedidoRepository.Add(Pedido);
+
+                ISession session =
+                services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+
+                var context = services.GetService<AppDbContext>();
+                int pedidoId = session.GetInt32("PedidoId") ?? Pedido.PedidoId;
+
+                session.SetInt32("PedidoId", pedidoId);
+            }
+        }
 
         public List<PedidoItem> GetItensDoCarrinho()
         {
@@ -35,14 +42,13 @@ namespace Loja_Quadrinhos.Services
 
         public void AdicionarItemNoCarrinhoCompra(int produtoId, int quantidade)
         {
-            PedidoItem pedidoItem = new PedidoItem(Pedido.PedidoId, produtoId, quantidade);
             Produto produto = UnitOfWork.ProdutoRepository.GetById(produtoId);
+            PedidoItem pedidoItem = new PedidoItem(Pedido.PedidoId, Pedido, produtoId, produto, quantidade);
 
             if (pedidoItem != null)
             {
                 if(produto.QuantidadeEmEstoque > quantidade)
                 {
-                    UnitOfWork.PedidoItemRepository.Add(pedidoItem);
                     Pedido.AdicionarItem(pedidoItem);
                 }
                 else
@@ -59,11 +65,11 @@ namespace Loja_Quadrinhos.Services
 
         public void RemoverItemDoCarrinhoCompra(int produtoId)
         {
-            PedidoItem pedidoItem = new PedidoItem(Pedido.PedidoId, produtoId);
+            Produto produto = UnitOfWork.ProdutoRepository.GetById(produtoId);
+            PedidoItem pedidoItem = new PedidoItem(Pedido.PedidoId,Pedido,produtoId, produto);
             if (pedidoItem != null)
             {
                 Pedido.RemoverItem(pedidoItem);
-                UnitOfWork.PedidoItemRepository.Delete(pedidoItem);
             }
             else
             {
@@ -91,6 +97,10 @@ namespace Loja_Quadrinhos.Services
         {
             Pedido.Usuario = usuario;
             Pedido.UsuarioId = usuario.Id;
+            foreach(var item in GetItensDoCarrinho())
+            {
+                UnitOfWork.PedidoItemRepository.Add(item);
+            }
             UnitOfWork.Commit();
         }
 

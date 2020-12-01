@@ -9,6 +9,11 @@
     height: 350px;
 }
 
+.img-miniatura{
+    width: 40px;
+    height: 40px;
+}
+
 .subtitulo {
     font-family: XPLOR;
     font-size: 1rem;
@@ -43,9 +48,9 @@
 
 .btn-comprar {
     width: 423px;
-    height: 28px;
+    height: 56px;
     background: #86A694;
-    line-height: 28px;
+    line-height: 56px;
 }
 
 .descricao-detalhe {

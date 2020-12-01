@@ -33,6 +33,10 @@ namespace Loja_Quadrinhos.Models
 
         public void RemoverItem(PedidoItem pedidoItem)
         {
+            if(pedidoItem == null)
+            {
+                throw new Exception("PedidoItem Inválido!");
+            }
             this.PedidoItens.Remove(pedidoItem);
         }
 
