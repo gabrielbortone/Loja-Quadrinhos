@@ -7,7 +7,11 @@
 <div class="container" style="margin-top:80px;">
     <div class="row">
         <div class="col-6">
-            <img src=@Model.ImagemUrl/>
+            <div class="img-completa">
+                <div class="imagem-completa">
+                    <img src="@Model.ImagemUrl" class="img-fluid" />
+                </div>
+            </div>
         </div>
         <div class="col-6">
             <h1 class="titulo-quadrinho">@Model.Titulo</h1>

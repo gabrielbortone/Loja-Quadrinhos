@@ -10,11 +10,13 @@
         {
             <div class="col-md-3 quadrinho">
                 <a asp-action="Detalhes" asp-route-produtoId="@item.ProdutoId" class="imagem-miniatura">
-                    <img src="@item.ImagemUrl" />
+                    <div class="imagem-completa">
+                        <img src="@item.ImagemUrl" class="img-fluid" />
+                    </div>
                 </a>
                 <div>
                     <p class="subtitulo">@Html.DisplayFor(modelItem => item.Titulo)</p>
-                    <p class="preco">@Html.DisplayFor(modelItem => item.Preco)</p>
+                    <p class="preco">R$ @Html.DisplayFor(modelItem => item.Preco)</p>
                 </div>
             </div>
         }

@@ -33,11 +33,12 @@
                 Preço
             </th>
             <th>
-                QuantVendidos
+                Quant.Vendidos
             </th>
             <th>
-                QuantEmEstoque
+                Quant. Estoque
             </th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -45,7 +46,9 @@
 @foreach (var item in Model) {
         <tr class="texto">
             <td>
-                <img src=@Html.DisplayFor(modelItem => item.ImagemUrl)/>
+                <div class="img-miniatura">
+                    <img src="@item.ImagemUrl" class="img-fluid" />
+                </div>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Titulo)

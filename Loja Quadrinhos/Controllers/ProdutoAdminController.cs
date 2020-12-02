@@ -75,14 +75,15 @@ namespace Loja_Quadrinhos.Area.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Cadastrar([Bind("ProdutoId,Titulo,Autor,CategoriaId,Descricao,ImageFile,Preco,QuantidadeVendidos,QuantidadeEmEstoque")] Produto produto)
+        public IActionResult Cadastrar([Bind("Titulo,Autor,CategoriaId,Descricao,ImageFile,Preco,QuantidadeVendidos,QuantidadeEmEstoque")] Produto produto)
         {
-            if (ModelState.IsValid)
+            ImagemService.AddImagens(produto);
+
+            if (produtoValido(produto))
             {
-                ImagemService.AddImagens(produto);
                 UnitOfWork.ProdutoRepository.Add(produto);
                 UnitOfWork.Commit();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Listar));
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaNome", produto.CategoriaId);
             return View(produto);
@@ -113,11 +114,12 @@ namespace Loja_Quadrinhos.Area.Admin.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            ImagemService.AddImagens(produto);
+
+            if (produtoValido(produto))
             {
                 try
                 {
-                    ImagemService.AddImagens(produto);
                     _context.Update(produto);
                     await _context.SaveChangesAsync();
                 }
@@ -163,6 +165,13 @@ namespace Loja_Quadrinhos.Area.Admin.Controllers
             _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private bool produtoValido(Produto produto)
+        {
+            return produto.Titulo != null && produto.Autor != null && produto.CategoriaId != null &&
+                produto.Descricao != null && produto.Preco > 0 && 
+                produto.QuantidadeEmEstoque >= 0 && produto.QuantidadeVendidos >=0;
         }
 
         private bool ProdutoExists(int id)

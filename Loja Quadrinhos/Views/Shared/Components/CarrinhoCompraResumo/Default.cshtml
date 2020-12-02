@@ -2,10 +2,12 @@
 
 @if (Model.QuantidadeItens > 0)
 {
+    <li class="nav-item menu-item">
         <a asp-controller="CarrinhoCompra">
             <span><img src="~/img/carrinho compra 1.png" /></span>
             <span>
                 @Model.QuantidadeItens
             </span>
         </a>
+    </li>
 }

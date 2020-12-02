@@ -29,12 +29,12 @@ namespace Loja_Quadrinhos.Services
             string fileName = Path.GetFileNameWithoutExtension(produto.ImageFile.FileName);
             string extension = Path.GetExtension(produto.ImageFile.FileName);
             var newFileName = fileName + DateTime.Now.ToString("yyyymmssfff") + extension;
-            string path = Path.Combine(wwwRootPath + "/Imagens/", newFileName);
+            string path = Path.Combine(wwwRootPath +@"\img\quadrinhos\", newFileName);
 
             using (var fileStream = new FileStream(path, FileMode.Create))
             {
                 await produto.ImageFile.CopyToAsync(fileStream);
-                return path;
+                return @"\img\quadrinhos\"+ newFileName;
             }
 
             return "Sem-imagem!!!";

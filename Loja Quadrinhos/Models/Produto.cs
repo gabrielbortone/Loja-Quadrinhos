@@ -30,6 +30,7 @@ namespace Loja_Quadrinhos.Models
         [MaxLength(200)]
         public string Descricao { get; set; }
 
+        [Required]
         [Display(Name = "Caminho Imagem")]
         [StringLength(200)]
         public string ImagemUrl { get; set; }
@@ -85,6 +86,11 @@ namespace Loja_Quadrinhos.Models
         public void AtualizarPreco(decimal novoPreco)
         {
             this.Preco = novoPreco;
+        }
+
+        public string ObterImg()
+        {
+            return @"./www";
         }
     }
 }
